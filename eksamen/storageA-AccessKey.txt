@@ -1,0 +1,11 @@
+
+
+access key til storage account:
+
+resourceGroupName: Iac-eksam
+
+storageAccountName: mariasbuckettest
+
+accessKey1: Pr4vHtQDNuSA2y+cciFvD6E7/0QHyLcTWV8mlSR4vPQIqcXFWnf6CPD+6dzFbRkgpzOtYVOTz/IuEd5eVGGxTA==
+
+connectrionString: DefaultEndpointsProtocol=https;AccountName=mariasbuckettest;AccountKey=Pr4vHtQDNuSA2y+cciFvD6E7/0QHyLcTWV8mlSR4vPQIqcXFWnf6CPD+6dzFbRkgpzOtYVOTz/IuEd5eVGGxTA==;EndpointSuffix=core.windows.net
