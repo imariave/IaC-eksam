@@ -1,0 +1,47 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "ssqsl-iacAdminLogin": {
+            "minLength": 1,
+            "type": "String"
+        },
+        "ssqsl-iacAdminLoginPassword": {
+            "type": "SecureString"
+        }
+    },
+    "variables": {
+        "ssqsl-iacName": "[concat('ssqsl-iac', uniqueString(resourceGroup().id))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Sql/servers",
+            "apiVersion": "2014-04-01-preview",
+            "name": "[variables('ssqsl-iacName')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [],
+            "tags": {
+                "displayName": "ssqsl-iac"
+            },
+            "properties": {
+                "administratorLogin": "[parameters('ssqsl-iacAdminLogin')]",
+                "administratorLoginPassword": "[parameters('ssqsl-iacAdminLoginPassword')]"
+            },
+            "resources": [
+                {
+                    "type": "firewallrules",
+                    "apiVersion": "2014-04-01-preview",
+                    "name": "AllowAllWindowsAzureIps",
+                    "location": "[resourceGroup().location]",
+                    "dependsOn": [
+                        "[concat('Microsoft.Sql/servers/', variables('ssqsl-iacName'))]"
+                    ],
+                    "properties": {
+                        "startIpAddress": "0.0.0.0",
+                        "endIpAddress": "0.0.0.0"
+                    }
+                }
+            ]
+        }
+    ]
+}

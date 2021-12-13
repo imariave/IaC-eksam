@@ -20,26 +20,27 @@ New-AzResourceGroupDeployment `
     -TemplateParameterFile '.\eksamen\webapp-parameters.json'
 
 New-AzResourceGroupDeployment `
-    -Name "dev-envMariave-12132021" `
+    -Name "dev-marias-deployment-webapp" `
     -ResourceGroupName $rg `
-    -TemplateFile '.\eksamen\test-servA-template.json' `
-    -TemplateFile '.\eksamen\arm-webapp.json' `
-    -TemplateParameterFile '.\eksamen\webapp-parameters.json'
+    -TemplateFile '.\arm-webapp.json' `
+    -TemplateParameterFile '.\webapp-parameters.json'
+
 
 New-AzResourceGroupDeployment `
-    -Name "marias-deployment-module6-webapp" `
+    -Name "prod-envMariave-12132021-02" `
     -ResourceGroupName $rg `
-    -TemplateFile '.\eksamen\arm-webapp.json' `
-    -TemplateParameterFile '.\eksamen\webapp-parameters.json'
+    -TemplateFile '.\test-servA-template.json'
+
 
 New-AzResourceGroupDeployment `
-    -Name "prod-envMariave-12132021" `
+    -Name "dev-marias-sql-deploy" `
     -ResourceGroupName $rg `
-    -TemplateFile '.\eksamen\test-servA-template.json'
+    -TemplateFile '.\sql-template.json' `
+    -TemplateParameterFile '.\sql-parameters.json'
 
 
 
 Remove-AzResourceGroup -name "monetsinRG-12132021" -Force:$true
 
-Remove-AzResourceGroupDeployment -Name "prod-envMariave-12132021"
+Remove-AzResourceGroupDeployment -Name "dev-marias-deployment-sql"
 #Remove-AzResourceGroupDeployment -name "environment-test-12132021" -Force:$true
